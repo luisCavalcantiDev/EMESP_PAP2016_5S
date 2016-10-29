@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Season Soccer Manager</string>
+    <!--activity_main-->
+    <string name="main_texto">Informe seus dados</string>
+    <string name="main_login">Login</string>
+    <string name="main_senha">Senha</string>
+    <string name="main_enviar">Enviar</string>
+    <string name="main_nova_conta">Criar uma nova conta</string>
+    <string name="main_esqueceu_senha">Esqueceu a senha?</string>
+    <!---->
+    <!--activity_nova_conta-->
+    <string name="conta_texto">Cadastrar Nova Conta</string>
+    <string name="conta_nome">Nome</string>
+    <string name="conta_login">Login(apenas letras e números)</string>
+    <string name="conta_email">Email</string>
+    <string name="conta_senha">Senha</string>
+    <string name="conta_senha_confirmar">Confirma Senha</string>
+    <string name="conta_cadastrar">Cadastrar</string>
+    <string name="conta_cancelar">Cancelar</string>
+    <!---->
+    <!--activity_index-->
+    <string name="index_texto">Escolha uma das opções abaixo</string>
+    <string name="index_nova">Nova Temporada</string>
+    <string name="index_entrar">Entrar em uma Temporada</string>
+    <string name="index_cancelar">Cancelar</string>
+    <!---->
+</resources>
