@@ -3,11 +3,11 @@ var database = require('./db.js')
 
 function createTable(){
 	getConn(function(connection){
-		var query = 'CREATE TABLE IF NOT EXISTS players(' +
+		var query = 'CREATE TABLE IF NOT EXISTS players (' +
 						'id int NOT NULL AUTO_INCREMENT, ' + 
 						'email VARCHAR(100) NOT NULL, ' + 
-						'name VARCHAR(100) NOT NULL' + 
-						'pass VARCHAR(50) NOT NULL' + 
+						'name VARCHAR(100) NOT NULL,' + 
+						'pass VARCHAR(50) NOT NULL,' + 
 					 'PRIMARY KEY (id))';
 
 		connection.query(query);
@@ -27,7 +27,7 @@ function insert(data, connection, res){
 }
 
 function select(data, connection, res){
-	var query = 'SELECT name FROM players WHERE email = "' + data.email + '"';
+	var query = 'SELECT id, name FROM players WHERE email = "' + data.email + '"';
 			
 	connection.query(query, function(err, data){
 		if(data){
