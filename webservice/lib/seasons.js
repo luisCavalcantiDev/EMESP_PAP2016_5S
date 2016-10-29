@@ -14,7 +14,7 @@ function createTable(){
 }
 
 function get(data,connection,res){
-	var query = 'SELECT id,name,adminID FROM players';
+	var query = 'SELECT id,name,adminID FROM seasons';
 			
 	connection.query(query,function(err,data){
 		if(data){

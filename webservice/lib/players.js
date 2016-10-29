@@ -14,10 +14,23 @@ function createTable(){
 	})
 }
 
+function get(data,connection,res){
+	var query = 'SELECT id,name,email FROM players';
+			
+	connection.query(query,function(err,data){
+		if(data){
+			res.send(data);
+		} else {
+			res.send([]);
+		}
+	});
+}
+
 function insert(data, connection, res){
-	var query = 'INSERT into players (name,email,pass) VALUES ("'+ data.name + '","' + data.email + ', ' + data.pass + '")';
+	var query = 'INSERT into players (name,email,pass) VALUES ("'+ data.name + '","' + data.email + '", "' + data.pass + '")';
 			
 	connection.query(query, function(err, data){
+		console.log(err)
 		if(err){
 			res.send(false);
 		} else {
