@@ -5,8 +5,8 @@ module.exports.getInstance = function(){
 	if (instance) return instance;
 	instance = mysql.createPool({
 		host     : 'localhost',
-		user     : 'root',
-		password : 'root',
+		user     : 'pap',
+		password : 'pap123',
 		database : 'pap'
 	})
 	
