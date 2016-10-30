@@ -17,6 +17,19 @@ public class Usuario {
     @Expose
     private String email;
 
+    @SerializedName("pass")
+    @Expose
+    private String pass;
+
+    public Usuario(String name, String pass) {
+        this.name = name;
+        this.pass = pass;
+    }
+
+    public Usuario(){
+
+    }
+
     public String getId() {
         return id;
     }
@@ -39,5 +52,13 @@ public class Usuario {
 
     public void setEmail(String role) {
         this.email = role;
+    }
+
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 }

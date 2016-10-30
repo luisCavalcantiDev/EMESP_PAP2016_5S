@@ -15,17 +15,19 @@ import java.util.Scanner;
 
 public class UsuarioService {
 
-    private static final String _URL = "http://localhost:3000/ssm/api/tests/'"; //TODO: alterar para url players
+    //private static final String _BASE_URL = "http://10.0.2.2:4000/api/players/'";
+    private static final String _BASE_URL = "http://pap-ssm.sytes.net/api/players/'";
     private List<Usuario> usuarios = null;
 
-    public List<Usuario> autenticar(String email) throws IOException {
+    public List<Usuario> autenticar(Usuario usuario) throws IOException {
         List<Usuario> result = null;
         HttpURLConnection urlConnection = null;
         InputStream in = null;
         Scanner s = null;
 
         try {
-            URL url = new URL(_URL);
+
+            URL url = new URL(_BASE_URL + "?action=select&email=" + usuario.getEmail() + "&pass=" + usuario.getPass());
             urlConnection = (HttpURLConnection) url.openConnection();
 
             in = new BufferedInputStream(urlConnection.getInputStream());
@@ -51,9 +53,11 @@ public class UsuarioService {
             }
         }
 
-        if (result.get(0).getEmail().equals((email))) {
-            usuarios = new ArrayList<>();
-            usuarios.add(result.get(0));
+        if (result != null) {
+            if (result.size() > 0) {
+                usuarios = new ArrayList<>();
+                usuarios.add(result.get(0));
+            }
         }
 
         return this.usuarios;

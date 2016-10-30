@@ -3,5 +3,11 @@ https://app.moqups.com/dennysteves@gmail.com/4aF4yskCvR/view/page/ad64222d5?ui=0
 
 https://app.moqups.com/dennysteves@gmail.com/4aF4yskCvR/view/page/ad64222d5?ui=0
 
+https://codequs.com/p/HJBfJxMt/restful-api-with-node-js-and-express-4/
+
+http://chilion.nl/setting-up-a-nodejs-api-with-express-using-mysql/
+
+http://chilion.nl/setting-up-a-nodejs-api-with-express-extending-the-router/
+
 
 https://github.com/MetodistaPap/SSM

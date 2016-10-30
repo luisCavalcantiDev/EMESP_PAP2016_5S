@@ -40,7 +40,7 @@ function insert(data, connection, res){
 }
 
 function select(data, connection, res){
-	var query = 'SELECT id, name FROM players WHERE email = "' + data.email + '"';
+	var query = 'SELECT id, name FROM players WHERE email = "' + data.email + '" AND pass = "' + data.pass + '"';
 			
 	connection.query(query, function(err, data){
 		if(data){
