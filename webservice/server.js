@@ -44,7 +44,7 @@ app.get('/api/seasons', function(req,res){
 	// res.status(200).json([{"id":"1","name":"ssm","email":"ssm@gmail.com","pass":"1234"}]);
 // });
 
-console.log('SSM WebService @[port %s, pid %s] running', 4000, process.pid.toString());
+console.log('SSM WebService @[port %s, pid %s] running', 4000, process.pid.toString()); 
 
 
 
