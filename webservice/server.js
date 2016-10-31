@@ -23,7 +23,7 @@ app.get('/api/players', function(req,res){
 	players.actions(req.query,res);
 });
 
-
+ 
 // Seasons TODO: revisar modelagem
 /*
 console.log('SSM WebService @[port %s, pid %s] configurando seasons (db)', 4000, process.pid.toString());
