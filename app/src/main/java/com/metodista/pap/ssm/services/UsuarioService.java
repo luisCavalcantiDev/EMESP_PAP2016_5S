@@ -6,7 +6,6 @@ import com.metodista.pap.ssm.model.Resultado;
 import com.metodista.pap.ssm.model.Usuario;
 
 import java.io.BufferedInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
