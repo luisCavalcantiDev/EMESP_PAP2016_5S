@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.metodista.pap.ssm.model.Usuario;
 import com.metodista.pap.ssm.services.UsuarioService;
+import com.metodista.pap.ssm.utils.AndroidUtil;
 
 import java.io.IOException;
 import java.util.List;
@@ -77,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 return service.autenticar(usuario);
 
-            } catch (IOException e) {
+            } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
