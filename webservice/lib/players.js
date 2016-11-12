@@ -14,37 +14,26 @@ function createTable(){
 	})
 }
 
-function get(data,connection,res){
-	var query = 'SELECT id,name,email FROM players';
-			
-	connection.query(query,function(err,data){
-		if(data){
-			res.send(data);
-		} else {
-			res.send([]);
-		}
-	});
-}
-
 function insert(data, connection, res){
 
-	console.log('/api/players --> data: ');
+	console.log('/api/players?action=insert --> data: ');
 	console.log(data);
 
 	var query = 'INSERT into players (name,email,pass) VALUES ("'+ data.name + '","' + data.email + '", "' + data.pass + '")';
 			
 	connection.query(query, function(err, data){
 		if(err){
-			res.send({"processado" : false, "msg" : err});
+			console.log(err);
+			res.send('[]');
 		} else {
-			res.send({"processado" : true, "msg" : ""});
+			res.send([data]);
 		}
 	});
 }
 
 function select(data, connection, res){
 
-	console.log('/api/players --> data: ');
+	console.log('/api/players?action=select --> data: ');
 	console.log(data);
 
 	var query = 'SELECT id, name FROM players WHERE email = "' + data.email + '" AND pass = "' + data.pass + '"';

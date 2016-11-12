@@ -24,8 +24,8 @@ app.get('/api/players', function(req,res){
 });
 
  
-// Seasons TODO: revisar modelagem
-/*
+//Seasons
+
 console.log('SSM WebService @[port %s, pid %s] configurando seasons (db)', 4000, process.pid.toString());
 
 var seasons = require('./lib/seasons.js');
@@ -36,7 +36,7 @@ console.log('SSM WebService @[port %s, pid %s] configurando seasons (routes)', 4
 app.get('/api/seasons', function(req,res){
 	seasons.actions(req.query,res);
 });
-*/
+
 
 //TEST: integração com a APK (hardcode) -- remover após correções de conexão com o NodeJS-->MySQL
 // app.get('/api/tests/:email', function(req,res){
