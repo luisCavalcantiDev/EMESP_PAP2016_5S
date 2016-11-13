@@ -29,8 +29,27 @@ public final class AndroidUtil {
         return textString;
     }
 
+    public static void setTextStringFromField(int idField, int typeField, String text, AppCompatActivity activity) {
+        try {
+            if (typeField == EDIT_TEXT) {
+                setTextStringEditText(idField, text, activity);
+            } else if (typeField == TEXT_VIEW) {
+                setTextStringTextView(idField, text, activity);
+            } else {
+                return;
+            }
+
+        } catch (Exception e) {
+            return;
+        }
+    }
+
     public static void showShortMessage(String msg, AppCompatActivity activity) {
         (Toast.makeText(activity, msg, Toast.LENGTH_SHORT)).show();
+    }
+
+    public static void showLongMessage(String msg, AppCompatActivity activity) {
+        (Toast.makeText(activity, msg, Toast.LENGTH_LONG)).show();
     }
 
     private static String getTextStringEditText(int idField, AppCompatActivity activity) {
@@ -39,5 +58,13 @@ public final class AndroidUtil {
 
     private static String getTextStringTextView(int idField, AppCompatActivity activity) {
         return ((TextView) activity.findViewById(idField)).getText().toString();
+    }
+
+    private static void setTextStringEditText(int idField, String text, AppCompatActivity activity) {
+        ((EditText) activity.findViewById(idField)).setText(text);
+    }
+
+    private static void setTextStringTextView(int idField, String text, AppCompatActivity activity) {
+        ((TextView) activity.findViewById(idField)).setText(text);
     }
 }

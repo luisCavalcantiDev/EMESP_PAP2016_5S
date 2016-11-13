@@ -1,92 +1,60 @@
 package com.metodista.pap.ssm.dao;
 
 import android.annotation.TargetApi;
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
 import android.util.Log;
 
-import com.metodista.pap.ssm.model.Usuario;
-
 @TargetApi(Build.VERSION_CODES.N)
 public class SSMDataBase extends SQLiteOpenHelper {
 
-    public SSMDataBase(Context context) {
+    public static final int DAO_USUARIOS = 1;
+    public static final int DAO_TEMPORADAS = 1;
+
+    private int daoInstance;
+    private UsuarioDao usuarioDao = null;
+    private TemporadaDao temporadaDao = null;
+
+    public SSMDataBase(Context context, int dao) {
         super(context, "SSM", null, 1);
+        this.daoInstance = dao;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d("SSMDataBase", "onCreate");
-        db.execSQL("CREATE TABLE Autenticacao (id integer primary key autoincrement, idUsuario integer, nome text, email text, senha text);");
+        this.setup(db);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        this.setup(db);
     }
 
-    public Usuario autenticarUsuario(Usuario usuario) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        try {
-            ContentValues values = new ContentValues();
-            values.put("idUsuario", usuario.getId());
-            values.put("nome", usuario.getName());
-            values.put("email", usuario.getEmail());
-            values.put("senha", usuario.getPass());
-
-            if (usuario.getIdAutenticacao() == null) {
-                long id = db.insert("Autenticacao", null, values);
-                usuario.setIdAutenticacao(id);
-
-            } else {
-                db.update("Autenticacao", values, "", null);
-            }
-
-        } finally {
-            if (db != null) {
-                db.close();
-            }
+    public UsuarioDao getUsuarioDao() {
+        if(this.daoInstance == DAO_USUARIOS){
+            usuarioDao = new UsuarioDao(this.getWritableDatabase());
         }
 
-        return usuario;
+        return usuarioDao;
     }
 
-    public Usuario consultarUsuario(String idUsuario) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Usuario usuario = null;
-        Cursor cursor = null;
-
-        try {
-            String[] where = new String[]{String.valueOf(idUsuario)};
-            cursor = db.rawQuery("SELECT id, nome, email, senha FROM Autenticacao where idUsuario = ?", where);
-            cursor.moveToFirst();
-
-            usuario = new Usuario();
-            for (int i = 0; i < cursor.getCount(); i++) {
-                usuario.setId(idUsuario);
-                usuario.setIdAutenticacao(cursor.getLong(0));
-                usuario.setName(cursor.getString(1));
-                usuario.setEmail(cursor.getString(2));
-                usuario.setPass(cursor.getString(3));
-                cursor.moveToNext();
-            }
-
-        } finally {
-
-            if (cursor != null) {
-                cursor.close();
-            }
-
-            if (db != null) {
-                db.close();
-            }
+    public TemporadaDao getTemporadaDao() {
+        if(this.daoInstance == DAO_USUARIOS){
+            temporadaDao = new TemporadaDao(this.getWritableDatabase());
         }
 
-        return usuario;
+        return temporadaDao;
+    }
+
+    private void setup(SQLiteDatabase db){
+        Log.d("SSMDataBase", "onCreate");
+
+        //Autenticacao
+        db.execSQL("CREATE TABLE IF NOT EXISTS Autenticacao (id long primary key autoincrement, idUsuario integer, nome text, email text, senha text);");
+
+        //Temporadas do Usuário
+        db.execSQL("CREATE TABLE IF NOT EXISTS Temporadas (id long primary key autoincrement, idTemporada integer, nome text, adminID integer);");
     }
 }

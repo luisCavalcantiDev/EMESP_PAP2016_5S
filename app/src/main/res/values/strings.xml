@@ -21,8 +21,13 @@
     <!--activity_index-->
     <string name="index_texto">Escolha uma das opções abaixo</string>
     <string name="index_nova">Nova Temporada</string>
-    <string name="index_entrar">Entrar em uma Temporada</string>
-    <string name="index_cancelar">Cancelar</string>
+    <string name="index_entrar">Entrar numa Temporada</string>
+    <string name="index_cancelar">Encerrar</string>
+    <!--activity_main-->
+    <string name="tmeporada_texto">Informe o nome da Temporada</string>
+    <string name="temporada_nome">Nome</string>
+    <string name="temporada_cadastrar">Cadastrar</string>
+    <!---->
     <!--activities-->
     <string name="user">Usuário: </string>
     <!---->

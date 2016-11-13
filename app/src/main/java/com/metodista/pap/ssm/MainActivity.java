@@ -6,14 +6,13 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.metodista.pap.ssm.dao.SSMDataBase;
+import com.metodista.pap.ssm.dao.UsuarioDao;
 import com.metodista.pap.ssm.model.Usuario;
 import com.metodista.pap.ssm.services.ConfiguracoesSSM;
 import com.metodista.pap.ssm.services.UsuarioService;
+import com.metodista.pap.ssm.utils.AndroidUtil;
 
 import java.util.List;
 
@@ -36,16 +35,16 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 
-            String email = ((EditText) findViewById(R.id.mainLogin)).getText().toString();
-            String pass = ((EditText) findViewById(R.id.mainSenha)).getText().toString();
+            String email = AndroidUtil.getTextStringFromField(R.id.mainLogin, AndroidUtil.EDIT_TEXT, this);
+            String pass = AndroidUtil.getTextStringFromField(R.id.mainSenha, AndroidUtil.EDIT_TEXT, this);
 
             if (email.equals("")) {
-                (Toast.makeText(this, "Informe o login (e-mail cadastrado).", Toast.LENGTH_SHORT)).show();
+                AndroidUtil.showShortMessage("Informe o login (e-mail cadastrado", this);
                 return;
             }
 
             if (pass.equals("")) {
-                (Toast.makeText(this, "Informe a senha.", Toast.LENGTH_SHORT)).show();
+                AndroidUtil.showShortMessage("Informe a senha.", this);
                 return;
             }
 
@@ -87,14 +86,12 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(usuarios);
 
             if (usuarios != null) {
-                SSMDataBase db = new SSMDataBase(MainActivity.this);
 
-                ConfiguracoesSSM.getInstance().setUsuarioLogado(db.autenticarUsuario(usuarios.get(0)));
+                UsuarioDao usuarioDao = (new SSMDataBase(MainActivity.this, SSMDataBase.DAO_USUARIOS)).getUsuarioDao();
+                ConfiguracoesSSM.getInstance().setUsuarioLogado(usuarioDao.autenticarUsuario(usuarios.get(0)));
             }
 
             dialog.dismiss();
-
-
         }
     }
 }

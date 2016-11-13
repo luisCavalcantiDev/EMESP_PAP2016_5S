@@ -62,11 +62,20 @@ public class NovaContaActivity extends AppCompatActivity {
         }
     }
 
+    public void cancelarCadastro(View view){
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
     private class UsuarioTask extends AsyncTask<String, Void, List<Usuario>> {
 
         private ProgressDialog dialog = new ProgressDialog(NovaContaActivity.this);
 
         public UsuarioTask() {
+        }
+
+        @Override
+        protected void onPreExecute() {
+            dialog.show();
         }
 
         @Override

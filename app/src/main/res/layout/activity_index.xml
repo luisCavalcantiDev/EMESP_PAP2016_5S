@@ -39,7 +39,8 @@
         android:text="@string/index_nova"
         android:id="@+id/novaBtn"
         android:layout_below="@+id/texto"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="criarNovaTemporada"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -57,7 +58,8 @@
         android:text="@string/index_cancelar"
         android:id="@+id/cancelarBtn"
         android:layout_below="@+id/entrarBtn"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="encerrar"/>
 
     <TextView
         android:id="@+id/indexUser"
