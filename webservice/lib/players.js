@@ -14,32 +14,47 @@ function createTable(){
 	})
 }
 
-function insert(data, connection, res){
+function insert(req, connection, res){
 
-	console.log('/api/players?action=insert --> data: ');
-	console.log(data);
+	console.log('/api/players?action=insert --> request: ');
+	console.log(req);
 
-	var query = 'INSERT into players (name,email,pass) VALUES ("'+ data.name + '","' + data.email + '", "' + data.pass + '")';
+	var query = 'INSERT into players (name,email,pass) VALUES ("'+ req.name + '","' + req.email + '", "' + req.pass + '")';
 			
 	connection.query(query, function(err, data){
 		if(err){
 			console.log(err);
 			res.send('[]');
+		}
+
+		console.log('/api/players?action=insert --> response: ');
+		console.log(data);
+	});
+
+	query = 'SELECT id, name, email, pass FROM players WHERE email = "' + req.email + '"';
+			
+	connection.query(query, function(err, data){
+		if(data){
+			console.log(data);
+			res.send(data);
 		} else {
-			res.send([data]);
+			res.send('[]');
 		}
 	});
 }
 
-function select(data, connection, res){
+function select(req, connection, res){
 
-	console.log('/api/players?action=select --> data: ');
-	console.log(data);
+	console.log('/api/players?action=select --> request: ');
+	console.log(req);
 
-	var query = 'SELECT id, name FROM players WHERE email = "' + data.email + '" AND pass = "' + data.pass + '"';
+	var query = 'SELECT id, name, email, pass FROM players WHERE email = "' + req.email + '" AND pass = "' + req.pass + '"';
 			
 	connection.query(query, function(err, data){
 		if(data){
+			console.log('/api/players?action=select --> response: ');
+			console.log(data);
+
 			res.send(data);
 		} else {
 			res.send('[]');

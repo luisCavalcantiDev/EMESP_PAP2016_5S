@@ -2,7 +2,6 @@ package com.metodista.pap.ssm.services;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.metodista.pap.ssm.model.Resultado;
 import com.metodista.pap.ssm.model.Usuario;
 
 import java.io.BufferedInputStream;
@@ -15,8 +14,8 @@ import java.util.Scanner;
 
 public class UsuarioService {
 
-    //private static final String _BASE_URL = "http://10.0.2.2:4000/api/players";
-    private static final String _BASE_URL = "http://pap-ssm.sytes.net/api/players";
+    private static final String _BASE_URL = "http://10.0.2.2:4000/api/players";
+    //private static final String _BASE_URL = "http://pap-ssm.sytes.net/api/players";
     private List<Usuario> usuarios = null;
 
     public List<Usuario> autenticar(Usuario usuario) throws Exception {
@@ -65,11 +64,11 @@ public class UsuarioService {
         return this.usuarios;
     }
 
-    public Boolean postUsuario(Usuario usuario) throws Exception {
+    public List<Usuario> cadastrarUsuario(Usuario usuario) throws Exception {
         HttpURLConnection urlConnection = null;
         InputStream in = null;
         Scanner s = null;
-        List<Resultado> result = null;
+        List<Usuario> result = null;
 
         try {
 
@@ -81,7 +80,7 @@ public class UsuarioService {
             String conteudo = s.useDelimiter("\\A").next();
 
             Gson gson = new Gson();
-            result = gson.fromJson(conteudo, new TypeToken<List<Resultado>>() {}.getType());
+            result = gson.fromJson(conteudo, new TypeToken<List<Usuario>>() {}.getType());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -100,9 +99,14 @@ public class UsuarioService {
         }
 
         if (result != null) {
-            return result.get(0).getProcessado();
-        } else {
-            throw new Exception("Erro ao cadastrar o usuário.");
+            if (result.size() > 0) {
+                usuarios = new ArrayList<>();
+                usuarios.add(result.get(0));
+            }else{
+                throw new Exception("Usuário não cadastrado.");
+            }
         }
+
+        return this.usuarios;
     }
 }

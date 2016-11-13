@@ -23,5 +23,7 @@
     <string name="index_nova">Nova Temporada</string>
     <string name="index_entrar">Entrar em uma Temporada</string>
     <string name="index_cancelar">Cancelar</string>
+    <!--activities-->
+    <string name="user">Usuário: </string>
     <!---->
 </resources>

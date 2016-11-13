@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Usuario {
 
+    private Long idAutenticacao;
+
     @SerializedName("id")
     @Expose
     private String id;
@@ -21,8 +23,8 @@ public class Usuario {
     @Expose
     private String pass;
 
-    public Usuario(String name, String pass) {
-        this.name = name;
+    public Usuario(String email, String pass) {
+        this.email = email;
         this.pass = pass;
     }
 
@@ -30,8 +32,16 @@ public class Usuario {
 
     }
 
+    public Long getIdAutenticacao() {
+        return idAutenticacao;
+    }
+
+    public void setIdAutenticacao(long idAutenticacao) {
+        this.idAutenticacao = idAutenticacao;
+    }
+
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
@@ -47,15 +57,15 @@ public class Usuario {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
-    public void setEmail(String role) {
-        this.email = role;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPass() {
-        return pass;
+        return this.pass;
     }
 
     public void setPass(String pass) {

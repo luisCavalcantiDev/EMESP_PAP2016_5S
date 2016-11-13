@@ -15,12 +15,12 @@ public final class ConfiguracoesSSM {
         return instance;
     }
 
-    public static void setUsuarioLogado(Usuario usuarioLogado) {
+    public void setUsuarioLogado(Usuario usuarioLogado) {
         ConfiguracoesSSM.usuarioLogado = usuarioLogado;
     }
 
-    public static Usuario getUsuarioLogado() {
-        return usuarioLogado;
+    public Usuario getUsuarioLogado() {
+        return ConfiguracoesSSM.usuarioLogado;
 
     }
 }

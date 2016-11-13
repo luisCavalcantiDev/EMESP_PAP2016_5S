@@ -13,32 +13,28 @@ function createTable(){
 	})
 }
 
-function insert(data, connection, res){
+function insert(req, connection, res){
 
-	console.log('/api/seasons?action=insert --> data: ');
-	console.log(data);
+	console.log('/api/seasons?action=insert --> request: ');
+	console.log(req);
 
-	var query = 'INSERT into seasons (name,adminID) VALUES ("'+ data.name + '","' + data.adminID + '")';
+	var query = 'INSERT into seasons (name,adminID) VALUES ("'+ req.name + '","' + req.adminID + '")';
 			
 	connection.query(query, function(err, data){
 		if(err){
 			console.log(err);
 			res.send('[]');
-		} else {
-			res.send([data]);
 		}
+
+		console.log('/api/seasons?action=insert --> response: ');
+		console.log(data);
 	});
-}
 
-function select(data, connection, res){
-
-	console.log('/api/seasons?action=select --> data: ');
-	console.log(data);
-
-	var query = 'SELECT id, name, adminID FROM seasons WHERE name = "' + data.name + '"';
+	var query = 'SELECT id, name, adminID FROM seasons WHERE name = "' + req.name + '"';
 			
 	connection.query(query, function(err, data){
 		if(data){
+			console.log(data);
 			res.send(data);
 		} else {
 			res.send('[]');
@@ -46,15 +42,33 @@ function select(data, connection, res){
 	});
 }
 
-function selectAdmin(data, connection, res){
+function select(req, connection, res){
 
-	console.log('/api/seasons?action=selectAdmin --> data: ');
-	console.log(data);
+	console.log('/api/seasons?action=select --> request: ');
+	console.log(req);
 
-	var query = 'SELECT id, name FROM seasons WHERE adminID = "' + data.adminID + '"';
+	var query = 'SELECT id, name, adminID FROM seasons WHERE name = "' + req.name + '"';
 			
 	connection.query(query, function(err, data){
 		if(data){
+			console.log(data);
+			res.send(data);
+		} else {
+			res.send('[]');
+		}
+	});
+}
+
+function selectAdmin(req, connection, res){
+
+	console.log('/api/seasons?action=selectAdmin --> request: ');
+	console.log(req);
+
+	var query = 'SELECT id, name, adminID FROM seasons WHERE adminID = "' + req.adminID + '"';
+			
+	connection.query(query, function(err, data){
+		if(data){
+			console.log(data);
 			res.send(data);
 		} else {
 			res.send('[]');

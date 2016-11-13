@@ -7,9 +7,12 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.metodista.pap.ssm.dao.SSMDataBase;
 import com.metodista.pap.ssm.model.Usuario;
+import com.metodista.pap.ssm.services.ConfiguracoesSSM;
 import com.metodista.pap.ssm.services.UsuarioService;
 
 import java.util.List;
@@ -33,10 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 
-            String name = ((EditText) findViewById(R.id.mainLogin)).getText().toString();
+            String email = ((EditText) findViewById(R.id.mainLogin)).getText().toString();
             String pass = ((EditText) findViewById(R.id.mainSenha)).getText().toString();
 
-            if (name.equals("")) {
+            if (email.equals("")) {
                 (Toast.makeText(this, "Informe o login (e-mail cadastrado).", Toast.LENGTH_SHORT)).show();
                 return;
             }
@@ -46,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            this.usuario = new Usuario(name, pass);
+            this.usuario = new Usuario(email, pass);
             UsuarioTask task = new UsuarioTask();
             task.execute();
 
@@ -81,7 +84,17 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<Usuario> usuarios) {
+            super.onPostExecute(usuarios);
+
+            if (usuarios != null) {
+                SSMDataBase db = new SSMDataBase(MainActivity.this);
+
+                ConfiguracoesSSM.getInstance().setUsuarioLogado(db.autenticarUsuario(usuarios.get(0)));
+            }
+
             dialog.dismiss();
+
+
         }
     }
 }
