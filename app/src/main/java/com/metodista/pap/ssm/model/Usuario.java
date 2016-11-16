@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class Usuario {
 
-    private Long idUsuario;
+    private Long _id;
 
     @SerializedName("id")
     @Expose
-    private String id;
+    private String idUsuario;
 
     @SerializedName("name")
     @Expose
@@ -32,20 +32,20 @@ public class Usuario {
 
     }
 
-    public Long getIdUsuario() {
-        return idUsuario;
+    public Long get_id() {
+        return _id;
     }
 
-    public void setIdUsuario(long idUsuario) {
+    public void set_id(long _id) {
+        this._id = _id;
+    }
+
+    public String getIdUsuario() {
+        return this.idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {

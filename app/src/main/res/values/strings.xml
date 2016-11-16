@@ -27,6 +27,7 @@
     <string name="tmeporada_texto">Informe o nome da Temporada</string>
     <string name="temporada_nome">Nome</string>
     <string name="temporada_cadastrar">Cadastrar</string>
+    <string name="temporada_sync">Sincronizar</string>
     <!---->
     <!--activities-->
     <string name="user">Usuário: </string>

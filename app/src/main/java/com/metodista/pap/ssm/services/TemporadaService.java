@@ -19,7 +19,7 @@ public class TemporadaService extends BaseService {
     public List<Temporada> cadastrar(Temporada temporada) {
         try {
 
-            String stringUrl = this.getApi() + "?action=insert&name=" + temporada.getName() + "&adminID=" + ConfiguracoesSSM.getInstance().getUsuarioLogado().getId();
+            String stringUrl = this.getApi() + "?action=insert&name=" + temporada.getName() + "&adminID=" + ConfiguracoesSSM.getInstance().getUsuarioLogado().getIdUsuario();
 
             this.temporadas = FacadeService.getInstance().getResponseFromService(stringUrl, new TypeToken<List<Temporada>>() {
             }.getType());

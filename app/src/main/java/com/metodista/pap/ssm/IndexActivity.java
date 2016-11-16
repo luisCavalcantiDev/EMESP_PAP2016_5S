@@ -23,7 +23,7 @@ public class IndexActivity extends AppCompatActivity {
 
         if (ConfiguracoesSSM.getInstance().getUsuarioLogado() != null) {
             UsuarioDao usuarioDao = (new SSMDataBase(this, SSMDataBase.DAO_USUARIOS)).getUsuarioDao();
-            Usuario usuario = usuarioDao.consultarUsuario(ConfiguracoesSSM.getInstance().getUsuarioLogado().getId());
+            Usuario usuario = usuarioDao.consultarUsuario(ConfiguracoesSSM.getInstance().getUsuarioLogado().get_id());
 
             String texto = ((TextView) findViewById(R.id.indexUser)).getText().toString();
             ((TextView) findViewById(R.id.indexUser)).setText(texto + " " + usuario.getName());

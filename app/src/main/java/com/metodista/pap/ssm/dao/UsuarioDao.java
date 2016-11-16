@@ -19,13 +19,13 @@ public class UsuarioDao {
             this.dbContext.execSQL("DELETE FROM Autenticacao;");
 
             ContentValues values = new ContentValues();
-            values.put("idUsuario", usuario.getId());
+            values.put("idUsuario", usuario.getIdUsuario());
             values.put("nome", usuario.getName());
             values.put("email", usuario.getEmail());
             values.put("senha", usuario.getPass());
 
-            long id = this.dbContext.insert("Autenticacao", null, values);
-            usuario.setIdUsuario(id);
+            long _id = this.dbContext.insert("Autenticacao", null, values);
+            usuario.set_id(_id);
 
         } finally {
             if (this.dbContext != null) {
@@ -36,19 +36,19 @@ public class UsuarioDao {
         return usuario;
     }
 
-    public Usuario consultarUsuario(String idUsuario) {
+    public Usuario consultarUsuario(Long _id) {
         Usuario usuario = null;
         Cursor cursor = null;
 
         try {
-            String[] where = new String[]{String.valueOf(idUsuario)};
-            cursor = this.dbContext.rawQuery("SELECT id, nome, email, senha FROM Autenticacao where idUsuario = ?", where);
+            String[] where = new String[]{String.valueOf(_id)};
+            cursor = this.dbContext.rawQuery("SELECT idUsuario, nome, email, senha FROM Autenticacao where _id = ?", where);
             cursor.moveToFirst();
 
             usuario = new Usuario();
             for (int i = 0; i < cursor.getCount(); i++) {
-                usuario.setId(idUsuario);
-                usuario.setIdUsuario(cursor.getLong(0));
+                usuario.set_id(_id);
+                usuario.setIdUsuario(cursor.getString(0));
                 usuario.setName(cursor.getString(1));
                 usuario.setEmail(cursor.getString(2));
                 usuario.setPass(cursor.getString(3));

@@ -25,6 +25,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try {
+            SSMDataBase _db = new SSMDataBase(this, SSMDataBase.INIT_DAO);
+            _db.init();
+
+        } catch (Exception e) {
+            AndroidUtil.showShortMessage("Persistência de dados não inicializada. Erro: " + e.getMessage(), this);
+        }
     }
 
     public void criarNovaConta(View view) {

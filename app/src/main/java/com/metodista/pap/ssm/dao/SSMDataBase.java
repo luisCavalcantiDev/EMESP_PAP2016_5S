@@ -10,8 +10,9 @@ import android.util.Log;
 @TargetApi(Build.VERSION_CODES.N)
 public class SSMDataBase extends SQLiteOpenHelper {
 
+    public static final int INIT_DAO = 0;
     public static final int DAO_USUARIOS = 1;
-    public static final int DAO_TEMPORADAS = 1;
+    public static final int DAO_TEMPORADAS = 2;
 
     private int daoInstance;
     private UsuarioDao usuarioDao = null;
@@ -32,8 +33,12 @@ public class SSMDataBase extends SQLiteOpenHelper {
         this.setup(db);
     }
 
+    public void init(){
+
+    }
+
     public UsuarioDao getUsuarioDao() {
-        if(this.daoInstance == DAO_USUARIOS){
+        if (this.daoInstance == DAO_USUARIOS) {
             usuarioDao = new UsuarioDao(this.getWritableDatabase());
         }
 
@@ -41,20 +46,23 @@ public class SSMDataBase extends SQLiteOpenHelper {
     }
 
     public TemporadaDao getTemporadaDao() {
-        if(this.daoInstance == DAO_USUARIOS){
+        if (this.daoInstance == DAO_TEMPORADAS) {
             temporadaDao = new TemporadaDao(this.getWritableDatabase());
         }
 
         return temporadaDao;
     }
 
-    private void setup(SQLiteDatabase db){
+    private void setup(SQLiteDatabase db) {
         Log.d("SSMDataBase", "onCreate");
 
-        //Autenticacao
-        db.execSQL("CREATE TABLE IF NOT EXISTS Autenticacao (id long primary key autoincrement, idUsuario integer, nome text, email text, senha text);");
+        //Autenticacao do Usuário
+        db.execSQL("CREATE TABLE IF NOT EXISTS Autenticacao (_id integer primary key autoincrement, nome text, email text, senha text, idUsuario integer);");
 
-        //Temporadas do Usuário
-        db.execSQL("CREATE TABLE IF NOT EXISTS Temporadas (id long primary key autoincrement, idTemporada integer, nome text, adminID integer);");
+        //Temporadas do Usuário e Compartilhadas
+        db.execSQL("CREATE TABLE IF NOT EXISTS Temporadas (_id integer primary key autoincrement, nome text, adminID text, idTemporada integer);");
+
+        //Ranking do Usuário e Compartilhados
+        db.execSQL("CREATE TABLE IF NOT EXISTS Ranking (_id integer primary key autoincrement, usuario integer, temporada integer, campeonato text, time text, pontos REAL, idRanking integer);");
     }
 }

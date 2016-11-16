@@ -24,10 +24,10 @@
         android:layout_below="@+id/temporadaLogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
         android:text="@string/tmeporada_texto"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textColor="@color/texto"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -38,21 +38,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         android:textColorHint="@color/font"
         android:textColor="@color/font"
         android:hint="@string/temporada_nome"
         android:layout_gravity="center"
-        android:textSize="20sp"/>
+        android:textSize="18sp"/>
 
-    <Button
-        android:id="@+id/tmeporadaBtnCadastrar"
-        android:layout_below="@+id/temporadaNome"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/tempListOpcoes"
+        android:layout_below="@id/temporadaNome"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/temporada_cadastrar"
-        android:layout_centerHorizontal="true"
-        android:onClick="cadastrar"/>
-    
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/temporadaBtnCadastrar"
+            android:layout_below="@+id/temporadaNome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/temporada_cadastrar"
+            android:layout_centerHorizontal="true"
+            android:onClick="cadastrar"/>
+
+        <Button
+            android:id="@+id/tmeporadaBtnSync"
+            android:layout_below="@+id/temporadaBtnCadastrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/temporada_sync"
+            android:layout_centerHorizontal="true"
+            android:onClick="syncronizar"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/temporadaList"
+        android:layout_below="@id/tempListOpcoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 </RelativeLayout>

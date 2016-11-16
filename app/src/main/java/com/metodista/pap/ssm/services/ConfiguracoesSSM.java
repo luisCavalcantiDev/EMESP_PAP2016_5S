@@ -6,7 +6,7 @@ public final class ConfiguracoesSSM {
 
     private static final ConfiguracoesSSM INSTANCE = new ConfiguracoesSSM();
 
-    private static Usuario usuarioLogado;
+    private Usuario usuarioLogado;
 
     private ConfiguracoesSSM() {
     }
@@ -16,11 +16,11 @@ public final class ConfiguracoesSSM {
     }
 
     public void setUsuarioLogado(Usuario usuarioLogado) {
-        ConfiguracoesSSM.usuarioLogado = usuarioLogado;
+        this.usuarioLogado = usuarioLogado;
     }
 
     public Usuario getUsuarioLogado() {
-        return ConfiguracoesSSM.usuarioLogado;
+        return this.usuarioLogado;
 
     }
 }
