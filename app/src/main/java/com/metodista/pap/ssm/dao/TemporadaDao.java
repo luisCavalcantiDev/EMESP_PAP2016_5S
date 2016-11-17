@@ -59,6 +59,8 @@ public class TemporadaDao {
                 }
             }
 
+            this.dbContext.execSQL("DELETE FROM Temporadas WHERE idTemporada = ''");
+
         } finally {
             if (this.dbContext != null) {
                 this.dbContext.close();
@@ -71,7 +73,40 @@ public class TemporadaDao {
         Cursor cursor = null;
 
         try {
-            cursor = this.dbContext.rawQuery("SELECT _id, nome, adminID, idTemporada FROM Temporadas WHERE idTemporada <> ''", null);
+            cursor = this.dbContext.rawQuery("SELECT _id, nome, adminID, idTemporada FROM Temporadas", null);
+            if (cursor.getCount() > 0) {
+                temporadas = new ArrayList<>();
+
+                cursor.moveToFirst();
+                for (int i = 0; i < cursor.getCount(); i++) {
+                    Temporada temporada = new Temporada();
+                    temporada.set_id(cursor.getLong(0));
+                    temporada.setName(cursor.getString(1));
+                    temporada.setAdminID(cursor.getString(2));
+                    temporada.setIdTemporada(cursor.getString(3));
+
+                    temporadas.add(temporada);
+                    cursor.moveToNext();
+                }
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+        return temporadas;
+    }
+
+    public List<Temporada> getTemporadasParaSync() {
+        List<Temporada> temporadas = null;
+        Cursor cursor = null;
+
+        try {
+            cursor = this.dbContext.rawQuery("SELECT _id, nome, adminID, idTemporada FROM Temporadas WHERE idTemporada = ''", null);
             if (cursor.getCount() > 0) {
                 temporadas = new ArrayList<>();
 

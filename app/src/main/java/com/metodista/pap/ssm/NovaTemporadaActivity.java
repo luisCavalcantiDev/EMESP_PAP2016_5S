@@ -98,7 +98,7 @@ public class NovaTemporadaActivity extends AppCompatActivity {
 
                 TemporadaDao temporadaDao = (new SSMDataBase(NovaTemporadaActivity.this, SSMDataBase.DAO_TEMPORADAS)).getTemporadaDao();
 
-                temporadasParaSync = temporadaDao.getTemporadas();
+                temporadasParaSync = temporadaDao.getTemporadasParaSync();
                 if (temporadasParaSync != null) {
 
                     for (Temporada temp : temporadasParaSync) {
