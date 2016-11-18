@@ -34,9 +34,9 @@ public class TemporadaArrayAdapter extends ArrayAdapter<Temporada> {
         Temporada temp = temporadas.get(position);
         nome.setText(temp.getName());
         if (temp.getIdTemporada().equals("") == true) {
-            status.setText("Não sincronizado");
+            status.setText("Não Compartilhado");
         } else {
-            status.setText("Sincronizado");
+            status.setText("Compartilhado");
         }
         return linha;
     }

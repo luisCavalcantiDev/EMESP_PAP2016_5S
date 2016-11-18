@@ -54,8 +54,13 @@ public class IndexActivity extends AppCompatActivity {
             this.temporadaSelecionada.setIdTemporada(data.getStringExtra("temporada_idTemporada"));
 
             if (this.temporadaSelecionada.getName().equals("") == false && this.temporadaSelecionada.getIdTemporada().equals("") == false) {
+                Bundle bundle = new Bundle();
+                bundle.putString("nome_temp",this.temporadaSelecionada.getName());
+                bundle.putString("id_temp",this.temporadaSelecionada.getIdTemporada());
 
-                
+                Intent intent = new Intent(getBaseContext(),NovoRankingActivity.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         }
     }

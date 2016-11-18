@@ -27,12 +27,20 @@
     <string name="tmeporada_texto">Informe o nome da Temporada</string>
     <string name="temporada_nome">Nome</string>
     <string name="temporada_cadastrar">Cadastrar</string>
-    <string name="temporada_sync">Sincronizar</string>
+    <string name="temporada_sync">Compartilhar</string>
     <!---->
     <!--activity_entrar_temporada-->
     <string name="entrar_temp_texto">Entrar numa Temporada</string>
     <string name="entrar_temp_nome">Digite aqui o nome da Temporada</string>
     <string name="entrar_temporada">Entrar</string>
+    <!---->
+    <!--activity_novo_ranking-->
+    <string name="novo_rnk_texto">Temporada: </string>
+    <string name="novo_rnk_campeonato">Digite aqui o nome do Campeonato</string>
+    <string name="novo_rnk_time">Digite aqui o nome do Time</string>
+    <string name="novo_rnk_pontos">Insira aqui os pontos obtidos</string>
+    <string name="novo_rnk_cadastrar">Cadastrar</string>
+    <string name="novo_rnk_compartilhar">Compartilhar</string>
     <!---->
     <!--activities-->
     <string name="user">Usuário: </string>

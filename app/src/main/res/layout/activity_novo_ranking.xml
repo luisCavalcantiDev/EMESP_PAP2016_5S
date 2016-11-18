@@ -8,33 +8,33 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/white"
-    tools:context="com.metodista.pap.ssm.NovaTemporadaActivity">
+    tools:context="com.metodista.pap.ssm.NovoRankingActivity">
 
     <ImageView
         android:layout_width="150sp"
         android:layout_height="150sp"
-        android:id="@+id/temporadaLogo"
+        android:id="@+id/novoRnkLogo"
         android:src="@drawable/logo"
         android:layout_gravity="top"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/temporadaTexto"
-        android:layout_below="@+id/temporadaLogo"
+        android:id="@+id/novoRnkTexto"
+        android:layout_below="@+id/novoRnkLogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
-        android:text="@string/tmeporada_texto"
+        android:text="@string/novo_rnk_texto"
         android:textSize="20sp"
         android:textColor="@color/texto"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:id="@+id/temporadaNome"
-        android:layout_below="@+id/temporadaTexto"
+        android:id="@+id/novoRnkCampenonato"
+        android:layout_below="@+id/novoRnkTexto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
@@ -42,42 +42,63 @@
         android:layout_centerHorizontal="true"
         android:textColorHint="@color/font"
         android:textColor="@color/font"
-        android:hint="@string/temporada_nome"
+        android:hint="@string/novo_rnk_campeonato"
+        android:layout_gravity="center"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/novoRnkTime"
+        android:layout_below="@+id/novoRnkCampenonato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/font"
+        android:textColor="@color/font"
+        android:hint="@string/novo_rnk_time"
+        android:layout_gravity="center"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/novoRnkPontos"
+        android:layout_below="@+id/novoRnkTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/font"
+        android:textColor="@color/font"
+        android:hint="@string/novo_rnk_pontos"
         android:layout_gravity="center"
         android:textSize="18sp"/>
 
     <LinearLayout
-        android:id="@+id/tempListOpcoes"
-        android:layout_below="@id/temporadaNome"
+        android:layout_below="@+id/novoRnkPontos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_centerHorizontal="true">
 
         <Button
-            android:id="@+id/temporadaBtnCadastrar"
-            android:layout_below="@+id/temporadaNome"
+            android:id="@+id/novoRnkBtnCadastrar"
+            android:layout_below="@+id/novoRnkPontos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/temporada_cadastrar"
+            android:text="@string/novo_rnk_cadastrar"
             android:layout_centerHorizontal="true"
-            android:onClick="cadastrarTemporada"/>
+            android:onClick="cadastrarRanking"/>
 
         <Button
-            android:id="@+id/tmeporadaBtnSync"
-            android:layout_below="@+id/temporadaBtnCadastrar"
+            android:id="@+id/novoRnkBtnCompartilhar"
+            android:layout_below="@+id/novoRnkBtnCadastrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/temporada_sync"
+            android:text="@string/novo_rnk_compartilhar"
             android:layout_centerHorizontal="true"
-            android:onClick="sincronizarTemporadas"/>
+            android:onClick="sincronizarRankings"/>
 
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/temporadaList"
-        android:layout_below="@id/tempListOpcoes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

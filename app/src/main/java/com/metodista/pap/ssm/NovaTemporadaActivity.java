@@ -32,7 +32,7 @@ public class NovaTemporadaActivity extends AppCompatActivity {
         this.carregarDados();
     }
 
-    public void cadastrar(View view) {
+    public void cadastrarTemporada(View view) {
         try {
             this.temporada = new Temporada();
             this.temporada.setName(AndroidUtil.getTextStringFromField(R.id.temporadaNome, AndroidUtil.EDIT_TEXT, this));
@@ -57,7 +57,7 @@ public class NovaTemporadaActivity extends AppCompatActivity {
         }
     }
 
-    public void syncronizar(View view) {
+    public void sincronizarTemporadas(View view) {
         try {
             TemporadaTask task = new TemporadaTask();
             task.execute();

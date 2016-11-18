@@ -13,7 +13,7 @@
     <ImageView
         android:layout_width="150sp"
         android:layout_height="150sp"
-        android:id="@+id/temporadaLogo"
+        android:id="@+id/entrarTempLogo"
         android:src="@drawable/logo"
         android:layout_gravity="top"
         android:layout_alignParentTop="true"
@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/entrarTempTexto"
-        android:layout_below="@+id/temporadaLogo"
+        android:layout_below="@+id/entrarTempLogo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
