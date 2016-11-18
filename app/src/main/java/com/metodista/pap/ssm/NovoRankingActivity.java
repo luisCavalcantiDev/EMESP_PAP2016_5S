@@ -26,7 +26,7 @@ public class NovoRankingActivity extends AppCompatActivity {
         }
     }
 
-    public void cadastrarRankings(View view) {
+    public void cadastrarRanking(View view) {
         try {
             /*
             String nomeDigitadoDaTemporada = AndroidUtil.getTextStringFromField(R.id.entrarTempNome, AndroidUtil.EDIT_TEXT, this);
@@ -56,7 +56,37 @@ public class NovoRankingActivity extends AppCompatActivity {
         }
     }
 
-    public void sincronizarRanking(View view) {
+    public void sincronizarRankings(View view) {
+        try {
+            /*
+            String nomeDigitadoDaTemporada = AndroidUtil.getTextStringFromField(R.id.entrarTempNome, AndroidUtil.EDIT_TEXT, this);
+            if (nomeDigitadoDaTemporada.equals("")) {
+                AndroidUtil.showShortMessage("Digite o nome da Temporada", this);
+                return;
+            }
+
+            TemporadaDao temporadaDao = (new SSMDataBase(NovoRankingActivity.this, SSMDataBase.DAO_TEMPORADAS)).getTemporadaDao();
+            this.temporada = temporadaDao.getTemporadaPorNome(nomeDigitadoDaTemporada);
+            if (this.temporada != null) {
+                AndroidUtil.setTextStringFromField(R.id.temporadaNome, AndroidUtil.EDIT_TEXT, "", this);
+
+                Intent intent = new Intent();
+                intent.putExtra("temporada_nome", temporada.getName());
+                intent.putExtra("temporada_idTemporada", temporada.getIdTemporada());
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+            } else {
+                AndroidUtil.showShortMessage("Não existe uma Temporada com o nome [" + nomeDigitadoDaTemporada + "] compartilhada para Ranking entre os usuários.", this);
+                return;
+            }
+            */
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void visualizarRankings(View view) {
         try {
             /*
             String nomeDigitadoDaTemporada = AndroidUtil.getTextStringFromField(R.id.entrarTempNome, AndroidUtil.EDIT_TEXT, this);

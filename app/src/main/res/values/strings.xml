@@ -41,6 +41,7 @@
     <string name="novo_rnk_pontos">Insira aqui os pontos obtidos</string>
     <string name="novo_rnk_cadastrar">Cadastrar</string>
     <string name="novo_rnk_compartilhar">Compartilhar</string>
+    <string name="novo_rnk_visualizar">Visualizar</string>
     <!---->
     <!--activities-->
     <string name="user">Usuário: </string>
