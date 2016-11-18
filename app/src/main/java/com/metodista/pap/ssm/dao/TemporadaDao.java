@@ -68,6 +68,37 @@ public class TemporadaDao {
         }
     }
 
+    public Temporada getTemporadaPorNome(String nomeTemporada) {
+        Temporada temporada = null;
+        Cursor cursor = null;
+
+        try {
+            cursor = this.dbContext.rawQuery("SELECT _id, nome, adminID, idTemporada FROM Temporadas WHERE idTemporada <> '' AND nome = '" + nomeTemporada + "'", null);
+            if (cursor.getCount() > 0) {
+                temporada = new Temporada();
+
+                cursor.moveToFirst();
+                for (int i = 0; i < cursor.getCount(); i++) {
+                    temporada.set_id(cursor.getLong(0));
+                    temporada.setName(cursor.getString(1));
+                    temporada.setAdminID(cursor.getString(2));
+                    temporada.setIdTemporada(cursor.getString(3));
+
+                    cursor.moveToNext();
+                }
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+        return temporada;
+    }
+
     public List<Temporada> getTemporadas() {
         List<Temporada> temporadas = null;
         Cursor cursor = null;

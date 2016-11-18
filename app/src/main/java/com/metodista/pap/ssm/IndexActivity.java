@@ -1,5 +1,6 @@
 package com.metodista.pap.ssm;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.widget.TextView;
 
 import com.metodista.pap.ssm.dao.SSMDataBase;
 import com.metodista.pap.ssm.dao.UsuarioDao;
+import com.metodista.pap.ssm.model.Temporada;
 import com.metodista.pap.ssm.model.Usuario;
 import com.metodista.pap.ssm.services.ConfiguracoesSSM;
 import com.metodista.pap.ssm.utils.AndroidUtil;
@@ -15,6 +17,7 @@ import com.metodista.pap.ssm.utils.AndroidUtil;
 public class IndexActivity extends AppCompatActivity {
 
     private SSMDataBase db;
+    private Temporada temporadaSelecionada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +36,31 @@ public class IndexActivity extends AppCompatActivity {
         }
     }
 
-    public void criarNovaTemporada(View view){
+    public void criarNovaTemporada(View view) {
         startActivity(new Intent(this, NovaTemporadaActivity.class));
     }
 
-    public void encerrar(View view){
+    public void selecionarTemporadas(View view) {
+        Intent intent = new Intent(this, EntrarTemporadaActivity.class);
+        startActivityForResult(intent, 2);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (Activity.RESULT_OK == resultCode) {
+            this.temporadaSelecionada = new Temporada();
+            this.temporadaSelecionada.setName(data.getStringExtra("temporada_nome"));
+            this.temporadaSelecionada.setIdTemporada(data.getStringExtra("temporada_idTemporada"));
+
+            if (this.temporadaSelecionada.getName().equals("") == false && this.temporadaSelecionada.getIdTemporada().equals("") == false) {
+
+                
+            }
+        }
+    }
+
+    public void encerrar(View view) {
         moveTaskToBack(true);
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(1);

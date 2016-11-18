@@ -17,6 +17,7 @@
         <activity android:name=".NovaContaActivity"></activity>
         <activity android:name=".IndexActivity"></activity>
         <activity android:name=".NovaTemporadaActivity"></activity>
+        <activity android:name=".EntrarTemporadaActivity"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

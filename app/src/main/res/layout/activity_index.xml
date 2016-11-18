@@ -49,7 +49,8 @@
         android:text="@string/index_entrar"
         android:id="@+id/entrarBtn"
         android:layout_below="@+id/novaBtn"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="selecionarTemporadas"/>
 
     <Button
         android:layout_width="wrap_content"
