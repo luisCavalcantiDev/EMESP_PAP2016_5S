@@ -13,10 +13,12 @@ public class SSMDataBase extends SQLiteOpenHelper {
     public static final int INIT_DAO = 0;
     public static final int DAO_USUARIOS = 1;
     public static final int DAO_TEMPORADAS = 2;
+    public static final int DAO_RANKING = 3;
 
     private int daoInstance;
     private UsuarioDao usuarioDao = null;
     private TemporadaDao temporadaDao = null;
+    private RankingDao rankingDao = null;
 
     public SSMDataBase(Context context, int dao) {
         super(context, "SSM", null, 1);
@@ -51,6 +53,14 @@ public class SSMDataBase extends SQLiteOpenHelper {
         }
 
         return temporadaDao;
+    }
+
+    public RankingDao getRankingDao() {
+        if (this.daoInstance == DAO_RANKING) {
+            rankingDao = new RankingDao(this.getWritableDatabase());
+        }
+
+        return rankingDao;
     }
 
     private void setup(SQLiteDatabase db) {
