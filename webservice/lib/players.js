@@ -1,4 +1,6 @@
 var database = require('./db.js')
+,   bcrypt   = require('bcrypt-nodejs')
+,   salt     = bcrypt.genSaltSync(10)
 ,   db       = database.getInstance();
 
 function createTable(){
@@ -7,7 +9,7 @@ function createTable(){
 						'id int NOT NULL AUTO_INCREMENT, ' + 
 						'email VARCHAR(100) NOT NULL, ' + 
 						'name VARCHAR(100) NOT NULL,' + 
-						'pass VARCHAR(50) NOT NULL,' + 
+						'pass VARCHAR(100) NOT NULL,' + 
 					 'PRIMARY KEY (id))';
 
 		connection.query(query);
@@ -18,8 +20,9 @@ function insert(req, connection, res){
 
 	console.log('/api/players?action=insert --> request: ');
 	console.log(req);
-
-	var query = 'INSERT into players (name,email,pass) VALUES ("'+ req.name + '","' + req.email + '", "' + req.pass + '")';
+	
+	var hashPass = bcrypt.hashSync(req.pass, salt);
+	var query = 'INSERT into players (name,email,pass) VALUES ("'+ req.name + '","' + req.email + '", "' + hashPass + '")';
 			
 	connection.query(query, function(err, data){
 		if(err){
@@ -41,21 +44,28 @@ function insert(req, connection, res){
 			res.send('[]');
 		}
 	});
+
 }
 
 function select(req, connection, res){
 
 	console.log('/api/players?action=select --> request: ');
 	console.log(req);
-
-	var query = 'SELECT id, name, email, pass FROM players WHERE email = "' + req.email + '" AND pass = "' + req.pass + '"';
+	
+	var query = 'SELECT id, name, email, pass FROM players WHERE email = "' + req.email + '"';
 			
 	connection.query(query, function(err, data){
 		if(data){
 			console.log('/api/players?action=select --> response: ');
 			console.log(data);
 
-			res.send(data);
+			bcrypt.compare(req.pass, data[0].pass, function(err, validPass) {
+				if(validPass){
+					res.send(data);
+				} else {
+					res.send('[]');
+				}
+			});
 		} else {
 			res.send('[]');
 		}
