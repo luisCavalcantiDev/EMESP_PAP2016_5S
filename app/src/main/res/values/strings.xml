@@ -43,6 +43,10 @@
     <string name="novo_rnk_compartilhar">Compartilhar</string>
     <string name="novo_rnk_visualizar">Visualizar</string>
     <!---->
+    <!--activity_temporada_rankings-->
+    <string name="temp_rnk_texto">Lista de Rankings - Temporada: </string>
+    <string name="temp_rnk_encerrar">Encerrar Temporada</string>
+    <!---->
     <!--activities-->
     <string name="user">Usuário: </string>
     <!---->

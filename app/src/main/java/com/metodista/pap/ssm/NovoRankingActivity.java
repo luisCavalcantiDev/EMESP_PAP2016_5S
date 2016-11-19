@@ -1,12 +1,15 @@
 package com.metodista.pap.ssm;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.metodista.pap.ssm.adapters.RankingArrayAdapter;
 import com.metodista.pap.ssm.dao.RankingDao;
 import com.metodista.pap.ssm.dao.SSMDataBase;
 import com.metodista.pap.ssm.model.Ranking;
@@ -21,6 +24,7 @@ import java.util.List;
 public class NovoRankingActivity extends AppCompatActivity {
 
     private RankingService service = new RankingService();
+    private RankingArrayAdapter adapter;
     private Temporada temporada = null;
     private Ranking ranking = null;
 
@@ -91,7 +95,13 @@ public class NovoRankingActivity extends AppCompatActivity {
 
     public void visualizarRankings(View view) {
         try {
+            Bundle bundle = new Bundle();
+            bundle.putString("nome_temp", this.temporada.getName());
+            bundle.putString("id_temp", this.temporada.getIdTemporada());
 
+            Intent intent = new Intent(getBaseContext(), TemporadaRankingsActivity.class);
+            intent.putExtras(bundle);
+            startActivity(intent);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -144,6 +154,7 @@ public class NovoRankingActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<Ranking> rankings) {
+            super.onPostExecute(rankings);
 
             dialog.dismiss();
         }
